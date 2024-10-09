@@ -30,11 +30,11 @@ public class Document {
 	public Document() {
 	}
 
-	public Document(String code, String country, LocalDate issueDate, LocalDate expirationDate, User user) {
+	public Document(String code, String country, User user) {
 		this.code = code;
 		this.country = country;
-		this.issueDate = issueDate;
-		this.expirationDate = expirationDate;
+		this.issueDate = LocalDate.now();
+		this.expirationDate = LocalDate.now().plusYears(10);
 		this.user = user;
 	}
 

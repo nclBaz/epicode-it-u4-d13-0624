@@ -33,6 +33,10 @@ public class User {
 		this.surname = surname;
 	}
 
+	public Document getDocument() {
+		return document;
+	}
+
 	public UUID getUserId() {
 		return userId;
 	}
@@ -59,6 +63,7 @@ public class User {
 				"userId=" + userId +
 				", name='" + name + '\'' +
 				", surname='" + surname + '\'' +
+				/*", document=" + document +*/
 				'}';
 	}
 }
