@@ -3,8 +3,10 @@ package riccardogulin;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import riccardogulin.dao.BlogsDAO;
 import riccardogulin.dao.DocumentsDAO;
 import riccardogulin.dao.UsersDAO;
+import riccardogulin.entities.BlogPost;
 import riccardogulin.entities.Document;
 import riccardogulin.entities.User;
 
@@ -17,6 +19,7 @@ public class Application {
 
 		UsersDAO ud = new UsersDAO(em);
 		DocumentsDAO dd = new DocumentsDAO(em);
+		BlogsDAO bd = new BlogsDAO(em);
 
 		User aldo = new User("Aldo", "Baglio");
 		User giovanni = new User("Giovanni", "Storti");
@@ -33,6 +36,15 @@ public class Application {
 
 		System.out.println(aldoFromDB.getDocument());
 
+		// ***************************************** 1toMany *****************************************
+		BlogPost react = new BlogPost("React", "Non può essere bello in quanto frontend", aldoFromDB);
+		// bd.save(react);
+
+		BlogPost javaFromDB = bd.findById("b8bfd0da-bc1b-4c4a-82a0-73f02231adba");
+		System.out.println(javaFromDB);
+
+		System.out.println("------------ BIDIREZIONALITA'----------------");
+		aldoFromDB.getBlogPostsList().forEach(System.out::println);
 
 		em.close();
 		emf.close();
